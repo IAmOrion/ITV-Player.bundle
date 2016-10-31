@@ -126,38 +126,22 @@ def RenderEpisodeList(url=None, parent_name=None, section_name=None):
 
 	content = HTML.ElementFromURL(url, errors='ignore', cacheTime=1800)
 
-	mytitle = content.xpath('//meta[@property="og:title"]/@content')[0]
-	mysummary = content.xpath('//meta[@property="og:description"]/@content')[0]
-	myimage = content.xpath('//meta[@property="og:image"]/@content')[0]
+	episodes = content.xpath('//a[@data-content-type="episode"]')
 
-	oc.add(
-		VideoClipObject(
-			url = url,
-			title = mytitle,
-			summary = mysummary,
-			thumb = myimage
-		)
-	)
-
-
-	moreEpisodes = content.xpath('//a[@data-content-type="episode"]')
-
-	# skip the first as it's the current episode that we already got info for above
-	if len(moreEpisodes) > 1:
-		for episode in moreEpisodes[1:]:
-			epUrl = episode.xpath("@href")[0]
-			epContent = HTML.ElementFromURL(epUrl, errors='ignore', cacheTime=1800)
-			eptitle = epContent.xpath('//meta[@property="og:title"]/@content')[0]
-			epsummary = epContent.xpath('//meta[@property="og:description"]/@content')[0]
-			epimage = epContent.xpath('//meta[@property="og:image"]/@content')[0]
-			oc.add(
-				VideoClipObject(
-					url = epUrl,
-					title = eptitle,
-					summary = epsummary,
-					thumb = epimage
-				)
-			)
+        for episode in episodes:
+                epUrl = episode.xpath("@href")[0]
+                epContent = HTML.ElementFromURL(epUrl, errors='ignore', cacheTime=1800)
+                eptitle = epContent.xpath('//meta[@property="og:title"]/@content')[0]
+                epsummary = epContent.xpath('//meta[@property="og:description"]/@content')[0]
+                epimage = epContent.xpath('//meta[@property="og:image"]/@content')[0]
+                oc.add(
+                        VideoClipObject(
+                                url = epUrl,
+                                title = eptitle,
+                                summary = epsummary,
+                                thumb = epimage
+                        )
+                )
 
 	return oc
 
