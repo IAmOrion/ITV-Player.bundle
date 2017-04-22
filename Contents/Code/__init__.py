@@ -29,8 +29,8 @@ ART                     = 'art-2013.jpg'
 ICON                    = 'icon-2013.png'
 
 
-ITV_URL                 = "http://www.itv.com"
-ITV_ALL_URL         = "http://www.itv.com/hub/shows"
+ITV_URL                 = "https://www.itv.com"
+ITV_ALL_URL         = "https://www.itv.com/hub/shows"
 
 ITV_PROGRAMME_XPATH     = "//ul[@id='az-list']/li/ul/li"
 
@@ -53,7 +53,7 @@ def Start():
 	ObjectContainer.art = R(ART)
 	
 	HTTP.CacheTime = CACHE_1HOUR
-	HTTP.Headers['User-Agent'] = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10.8; rv:17.0) Gecko/20100101 Firefox/17.0'
+	HTTP.Headers['User-Agent'] = 'Mozilla/5.0 (Windows NT 10.0; WOW64; rv:52.0) Gecko/20100101 Firefox/52.0'
 
 #################################################
 @handler('/video/itv', NAME, thumb=ICON, art=ART)
