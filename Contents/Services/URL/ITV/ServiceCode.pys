@@ -34,7 +34,7 @@ def MediaObjectsForURL(url):
 def PlayVideo(url):
 
 	content = HTML.ElementFromURL(url, errors='ignore', cacheTime=1800)
-	productionID = content.xpath('//div[@id="video"]/@data-video-id')[0]
+	productionID = content.xpath('//div[@id="video"]/@data-video-autoplay-id')[0]
 
 	SM_TEMPLATE = """
 	<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:tem="http://tempuri.org/" xmlns:itv="http://schemas.datacontract.org/2004/07/Itv.BB.Mercury.Common.Types" xmlns:com="http://schemas.itv.com/2009/05/Common">
